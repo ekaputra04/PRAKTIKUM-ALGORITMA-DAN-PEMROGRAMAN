@@ -34,6 +34,7 @@ void open(){
 
 int main(){
     int menu;
+    open();
     printf("\n\t==============================================");
     printf("\n\t||                                          ||");
     printf("\n\t||                 PROGRAM                  ||");
@@ -134,37 +135,70 @@ void deskripsi(){
 }
 
 void fungsi_enkripsi(char *teks, int kunci){
-    for(int i = 0; teks[i] != '\0'; ++i){
-		if(teks[i] >= 'A' && teks[i] <= 'Z') {
- 			teks[i] = teks[i] + 32;
-		}
+    if(kunci >= 0){
+        for(int i = 0; teks[i] != '\0'; ++i){
+            if(teks[i] >= 'A' && teks[i] <= 'Z') {
+                teks[i] = teks[i] + 32;
+            }
 
-		if(teks[i] >= 'a' && teks[i] <= 'z'){
-			teks[i] = teks[i] + kunci;
-			if(teks[i] > 'z'){
-				teks[i] = teks[i] - 26;
-			}
-			teks[i] = teks[i] -32;
-		}
-	}
+            if(teks[i] >= 'a' && teks[i] <= 'z'){
+                teks[i] = teks[i] + kunci;
+                if(teks[i] > 'z'){
+                    teks[i] = teks[i] - 26;
+                }
+                teks[i] = teks[i] - 32;
+            }
+        }
+    }else{
+        kunci = (-1 * kunci);
+        for(int i = 0; teks[i] != '\0'; ++i){
+            if(teks[i] >= 'a' && teks[i] <= 'z') {
+                teks[i] = teks[i] - 32;
+            }
+
+            if(teks[i] >= 'A' && teks[i] <= 'Z'){
+                teks[i] = teks[i] - kunci;
+                if(teks[i] < 'A'){
+                    teks[i] = teks[i] + 26;
+                }
+                teks[i] = teks[i] + 32;
+            }
+        }
+    }
 }
 
 void fungsi_deskripsi(char *teks, int kunci){
-	for(int i = 0; teks[i] != '\0'; ++i){
-		if(teks[i] >= 'a' && teks[i] <= 'z') {
-			teks[i] = teks[i] - 32;
- 		}
+    if(kunci >= 0){
+        for(int i = 0; teks[i] != '\0'; ++i){
+            if(teks[i] >= 'a' && teks[i] <= 'z') {
+                teks[i] = teks[i] - 32;
+            }
 
-		if(teks[i] >= 'A' && teks[i] <= 'Z'){
-			teks[i] = teks[i] - kunci;
-			if(teks[i] < 'A'){
-				teks[i] = teks[i] + 26;
-			}
-			teks[i] = teks[i] + 32;
-		}
-	}
+            if(teks[i] >= 'A' && teks[i] <= 'Z'){
+                teks[i] = teks[i] - kunci;
+                if(teks[i] < 'A'){
+                    teks[i] = teks[i] + 26;
+                }
+                teks[i] = teks[i] + 32;
+            }
+        }
+    }else{
+        kunci = (-1 * kunci);
+        for(int i = 0; teks[i] != '\0'; ++i){
+            if(teks[i] >= 'A' && teks[i] <= 'Z') {
+                teks[i] = teks[i] + 32;
+            }
+
+            if(teks[i] >= 'a' && teks[i] <= 'z'){
+                teks[i] = teks[i] + kunci;
+                if(teks[i] > 'z'){
+                    teks[i] = teks[i] - 26;
+                }
+                teks[i] = teks[i] - 32;
+            }
+        }
+    }
 }
-
 void close(){
     printf("\n\tSelanjutnya...");
     getch();
